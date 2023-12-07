@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlaskApp</title>
+    <style>
+        .post {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f3f3f3
+        }
+
+        nav a {
+            color: #d64161;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+
+        .alert {
+            padding: 20px;
+            margin: 5px;
+            color: #970020;
+            background-color: #ffd5de;
+        }
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        select {
+            font-size: 1.2em;
+            padding: 5px;
+        }
+
+        input[type="submit"] {
+            top: 200;
+            font-size: 1.2em;
+            padding: 10px;
+            cursor: pointer;
+        }
+        h2,p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="{{ url_for('admin') }}"> Admin</a>
+        <a href="{{ url_for('reservation')}}">Reservations</a>
+    </nav>
+
+<hr>
+    <h2>IT-4320 Trip Reservation System</h2>
+    <p>Welcome to the IT-4320 reservation system. Use the select box to choose whether to make a reservation or log in as administrator </p>
+
+    <form action="{{ url_for('index')}}" method="get">
+        <label for="category">Select a category:</label>
+        <select id="category" name="category">
+            {% for category in catagories %}
+                <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+\</body>
+</html>
