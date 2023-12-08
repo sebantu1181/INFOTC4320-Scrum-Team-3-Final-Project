@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, render_template, flash, request, redirect, url_for, session 
 
 app = Flask(__name__)
 
@@ -28,21 +28,23 @@ def index():
             return redirect(url_for('admin'))
         elif category == 'Reserve a set':
             return redirect(url_for('reservation'))
-
+        
     return render_template('index.html', catagories=categories)
 
 # admin endpoint
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
         if admin_check(username, password):
             print('Login successful!')
-            return redirect(url_for('dashboard')) 
+            return redirect(url_for('dashboard'))  
         else:
-            print('wrong password/username ')
+            flash('wrong password/username', 'danger')
     return render_template('admin.html')
 
 @app.route('/reservations')
