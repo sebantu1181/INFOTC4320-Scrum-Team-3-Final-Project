@@ -42,7 +42,7 @@ def admin():
 
         if admin_check(username, password):
             print('Login successful!')
-            return redirect(url_for('dashboard'))  
+            return redirect(url_for('admin'))  
         else:
             flash('wrong password/username', 'danger')
     return render_template('admin.html')
