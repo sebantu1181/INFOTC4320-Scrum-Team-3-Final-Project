@@ -40,7 +40,7 @@ def admin():
 
         if admin_check(username, password):
             print('Login successful!')
-            return redirect(url_for('dashboard'))  # You need to define the 'dashboard' route
+            return redirect(url_for('dashboard')) 
         else:
             print('wrong password/username ')
     return render_template('admin.html')
