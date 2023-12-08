@@ -7,7 +7,7 @@ app.secret_key = 'infotec'
 
 # admin usernames and passwords
 users = {
-    'admin': {'password': '12345'},
+    'admin1': {'password': '12345'},
     'admin2': {'password': '24680'},
     'admin3': {'password': '98765'},
 
@@ -35,17 +35,20 @@ def index():
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
 
+    username = None
 
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form.get('username')
+        password = request.form.get('password')
 
         if admin_check(username, password):
-            print('Login successful!')
+            flash('Login successful!', 'success')
             return redirect(url_for('admin'))  
         else:
-            flash('wrong password/username', 'danger')
-    return render_template('admin.html')
+            flash('Login not successful. Check username or password', 'danger')
+
+
+    return render_template('admin.html', username=username)
 
 @app.route('/reservations')
 def reservation():
