@@ -2,15 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Login page</title>
+    <style>
+        .post {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f3f3f3
+        }
+
+        nav a {
+            color: #d64161;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+
+        .alert {
+            padding: 20px;
+            margin: 5px;
+            color: #970020;
+            background-color: #ffd5de;
+        }
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        select {
+            font-size: 1.2em;
+            padding: 5px;
+        }
+
+        input[type="submit"] {
+            font-size: 1.2em;
+            padding: 10px;
+            cursor: pointer;
+        }
+        h2,p {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('admin') }}"> Admin</a>
+        <a href="{{ url_for('reservation') }}">Reservations</a>
+    </nav>
+
+<hr>
     <h2>Login</h2>
     {% with messages = get_flashed_messages() %}
     
     {% endwith %}
-    <form method="post" action="{{ url_for('index') }}">
+    <form method="post" action="{{ url_for('admin') }}">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <br>
