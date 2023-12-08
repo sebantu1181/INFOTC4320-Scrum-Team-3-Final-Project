@@ -15,12 +15,20 @@ users = {
 
 # this will check to see if the passwords and usernames are valid
 def admin_check(username, password):
-    if username in users and users[username]['password'] == password:
+    user = users.get(username)
+    if user and user['password'] == password:
         return True
     return False
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method== 'POST':
+        category = request.form['category']
+        if category == 'Admin login':
+            return redirect(url_for('admin'))
+        elif category == 'Reserve a set':
+            return redirect(url_for('reservation'))
+
     return render_template('index.html', catagories=categories)
 
 # admin endpoint
@@ -31,11 +39,10 @@ def admin():
         password = request.form['password']
 
         if admin_check(username, password):
-            flash('Login successful!', 'success')
-            return redirect(url_for('dashboard'))
+            print('Login successful!')
+            return redirect(url_for('dashboard'))  # You need to define the 'dashboard' route
         else:
-            flash('Login unsuccessful. Please check your username and password.', 'danger')
-
+            print('wrong password/username ')
     return render_template('admin.html')
 
 @app.route('/reservations')
