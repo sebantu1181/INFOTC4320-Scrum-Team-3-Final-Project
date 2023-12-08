@@ -54,8 +54,14 @@
 <hr>
     <h2>Login</h2>
     {% with messages = get_flashed_messages() %}
-    
-    {% endwith %}
+    {% if messages %}
+      <div class="alert">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
     <form method="post" action="{{ url_for('admin') }}">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -65,5 +71,7 @@
         <br>
         <input type="submit" value="Login">
     </form>
+
+
 </body>
 </html>
