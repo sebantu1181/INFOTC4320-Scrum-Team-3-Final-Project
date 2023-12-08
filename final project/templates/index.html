@@ -55,8 +55,9 @@
     <h2>IT-4320 Trip Reservation System</h2>
     <p>Welcome to the IT-4320 reservation system. Use the select box to choose whether to make a reservation or log in as administrator </p>
 
-    <form action="{{ url_for('index')}}" method="get">
-        <label for="category">Select a category:</label>
+    <!--<form action="{{ url_for('index')}}" method="get"> -->
+        <form method="post">
+        <label for="category">Choose menu option:</label>
         <select id="category" name="category">
             {% for category in catagories %}
                 <option value="{{ category }}">{{ category }}</option>
